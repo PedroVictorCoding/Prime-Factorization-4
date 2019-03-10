@@ -1,56 +1,23 @@
-from collections import Counter
 
-def isPrime(x):
+factors = lambda n: [x for x in range(1,n+1) if not n%x]
+is_prime = lambda n: len(factors(n))==2
+primefactors = lambda n: list(filter(is_prime ,factors(n)))
 
-    if x == 2:
-        return True
+def primeFactorize(n):
+	n = int(n)
+	f = primefactors(n)
+	if is_prime(n):
+		return str(n)
+	else:
+		return str(f[0])+ "*"+primeFactorize(n/f[0])
 
-    if x % 2 == 0:
-        return False
+if __name__=='__main__':
+	print ("Welcome to the Prime Factorizer.. Enter the numbers in the prompt or enter 'quit' to exit")
+	num=0;
 
-    for i in range(3, int(x ** 0.5) + 1, 2):
-        if x % i == 0:
-            return False
-
-return True
-
-def getExponent(n):
-    c = Counter(n)
-    factors = []
-
-    for i in range(min(n), max(n) + 1):
-        if i in n:
-            if c[i] != 1:
-                factors.append(str(i) + "^" + str(c[i]))
-            else:
-                factors.append(str(i))
-
-        return factors
-
-        def main():  # Wrapper function
-
-    n = 4
-
-    factors = []
-    counter = 2
-
-    while True:
-
-        if n == 0 or n == 1:
-            break
-
-        for i in range(counter, n + 1):
-            if n % i == 0:
-                if isPrime(i):
-                    factors.append(i)
-                    n //= i
-                    break
-
-    if len(factors) != 0:
-        factors = getExponent(factors)
-        print(', '.join(factors))
-    else:
-        print('The number', n, 'does not have any prime factors.')
-
-if __name__ == '__main__':
-main()
+	while True:
+		if num:
+			print(primeFactorize(num))
+		num=input()
+		if num=="quit":
+			break
