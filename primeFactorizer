@@ -12,7 +12,7 @@ def primeFactorize(n):
 		return str(f[0])+ "*"+primeFactorize(n/f[0])
 
 if __name__=='__main__':
-	print ("Welcome to the Prime Factorizer.. Enter the numbers in the prompt or enter 'quit' to exit")
+	print ("Enter Number to Factor.... Or Type quit to exit")
 	num=0;
 
 	while True:
